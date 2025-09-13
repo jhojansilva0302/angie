@@ -2,106 +2,57 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para chispitas</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <title>Nuestra Historia 💖</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<script>
-let h = 0;
-let crecimiento = 0; 
-let numPetalos = 8;
-let corazones = [];
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  colorMode(HSB, 1);
-  noStroke();
-  textAlign(CENTER, CENTER);
+  <div class="portada">
+    <h1>✨ Nuestra Historia de Amor ✨</h1>
+    <h3>Un regalo con mucho amor para ti ❤️</h3>
+    <p>Explora cada momento especial que hemos vivido juntos 💕</p>
+  </div>
 
-  // generar corazones iniciales
-  for (let i = 0; i < 15; i++) {
-    corazones.push({
-      x: random(width/2 - 150, width/2 + 150),
-      y: random(height/2 - 300, height/2 - 100),
-      size: random(20, 40),
-      speed: random(0.5, 1.5),
-      hue: random(1)
-    });
-  }
-}
+  <section>
+    <h2>Capítulos de Nuestra Historia</h2>
+    <div class="menu-fotos">
+      <a href="foto1.html">🌹 Capítulo 1</a>
+      <a href="foto2.html">💫 Capítulo 2</a>
+      <a href="foto3.html">💕 Capítulo 3</a>
+      <a href="foto4.html">🌸 Capítulo 4</a>
+      <a href="foto5.html">💞 Capítulo 5</a>
+      <a href="foto6.html">✨ Capítulo 6</a>
+      <a href="foto7.html">💖 Capítulo 7</a>
+      <a href="foto8.html">🌹 Capítulo 8</a>
+      <a href="foto9.html">💕 Capítulo 9</a>
+      <a href="foto10.html">💫 Capítulo 10</a>
+      <a href="foto11.html">🌸 Capítulo 11</a>
+      <a href="foto12.html">💞 Capítulo 12</a>
+      <a href="foto13.html">✨ Capítulo 13</a>
+      <a href="foto14.html">💖 Capítulo 14</a>
+      <a href="foto15.html">🌹 Capítulo 15</a>
+      <a href="foto16.html">💕 Capítulo 16</a>
+      <a href="foto17.html">💫 Capítulo 17</a>
+      <a href="foto18.html">🌸 Capítulo 18</a>
+      <a href="foto19.html">💞 Capítulo 19</a>
+      <a href="foto20.html">✨ Capítulo 20</a>
+      <a href="foto21.html">💖 Capítulo 21</a>
+      <a href="foto22.html">🌹 Capítulo 22</a>
+      <a href="foto23.html">💕 Capítulo 23</a>
+      <a href="foto24.html">💫 Capítulo 24</a>
+      <a href="foto25.html">🌸 Capítulo 25</a>
+      <a href="foto26.html">💞 Capítulo 26</a>
+      <a href="foto27.html">✨ Capítulo 27</a>
+      <a href="foto28.html">💖 Capítulo 28</a>
+      <a href="foto29.html">🌹 Capítulo 29</a>
+      <a href="foto30.html">💕 Capítulo 30</a>
+    </div>
+  </section>
 
-function draw() {
-  background(0);
+  <footer>
+    Hecho con ❤️ por Jhojan para su amorcito. <br>
+    Siempre juntos, por siempre y para siempre 🌹
+  </footer>
 
-  // dibujar corazones flotando arriba de la flor
-  for (let c of corazones) {
-    fill(c.hue, 1, 1);
-    dibujarCorazon(c.x, c.y, c.size);
-
-    c.y -= c.speed; // suben poco a poco
-    if (c.y < -50) { 
-      c.y = height/2 - 100;
-      c.x = random(width/2 - 150, width/2 + 150);
-      c.size = random(20, 40);
-      c.hue = random(1);
-    }
-  }
-
-  translate(width/2, height/2);
-
-  let radioPetalo = map(cos(frameCount * 0.01), -1, 1, 160, 200); 
-  let crecimientoMax = 1;
-  if (crecimiento < crecimientoMax) {
-    crecimiento += 0.01;
-  }
-
-  // pétalos
-  for (let i = 0; i < numPetalos; i++) {
-    let angulo = TWO_PI / numPetalos * i;
-    push();
-    rotate(angulo);
-
-    let c = color((h + i/numPetalos) % 1, 1, 1, 0.9);
-    fill(c);
-
-    beginShape();
-    vertex(0, 0);
-    bezierVertex(60 * crecimiento, -60 * crecimiento, 
-                 120 * crecimiento, -60 * crecimiento, 
-                 0, -radioPetalo * crecimiento);
-    bezierVertex(-120 * crecimiento, -60 * crecimiento, 
-                 -60 * crecimiento, -60 * crecimiento, 
-                 0, 0);
-    endShape(CLOSE);
-
-    pop();
-  }
-
-  // centro
-  fill(1, 0.8, 1, crecimiento);
-  ellipse(0, 0, 120 * crecimiento, 120 * crecimiento);
-
-  h += 0.002;
-  if (h > 1) h = 0;
-
-  // texto romántico abajo
-  resetMatrix(); 
-  let colorTexto = color((h + 0.5) % 1, 1, 1); 
-  fill(colorTexto);
-  textSize(70);
-  textStyle(BOLD);
-  text("TE AMO MUCHO", width/2, height - 160);
-  text("MI AMORCITO", width/2, height - 80);
-}
-
-// función para dibujar corazones
-function dibujarCorazon(x, y, tam) {
-  beginShape();
-  vertex(x, y);
-  bezierVertex(x - tam/2, y - tam/2, x - tam, y + tam/3, x, y + tam);
-  bezierVertex(x + tam, y + tam/3, x + tam/2, y - tam/2, x, y);
-  endShape(CLOSE);
-}
-</script>
 </body>
 </html>

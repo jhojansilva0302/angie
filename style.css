@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #ff003c;
+  text-shadow: 0 0 20px #ff003c, 0 0 40px #ff003c;
+}
+
+p {
+  font-size: 1.2em;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Portada */
+.portada {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #111, #000);
+}
+
+/* Menú de fotos */
+.menu-fotos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 40px;
+}
+.menu-fotos a {
+  padding: 15px;
+  border: 2px solid #ff003c;
+  border-radius: 12px;
+  color: #ff99aa;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px #ff003c;
+}
+.menu-fotos a:hover {
+  background: #ff003c;
+  color: #fff;
+  box-shadow: 0 0 25px #ff003c;
+}
+
+/* Contenido de cada foto */
+.contenido-foto {
+  padding: 40px 20px;
+}
+.foto-grande {
+  width: 80%;
+  max-width: 700px;
+  border-radius: 15px;
+  border: 3px solid #ff003c;
+  box-shadow: 0 0 20px #ff003c;
+  margin: 20px 0;
+}
+.historia {
+  font-size: 1.3em;
+  color: #ff99aa;
+}
+.frase {
+  font-size: 2em;
+  margin: 30px 0;
+  color: #ff003c;
+  text-shadow: 0 0 15px #ff003c, 0 0 30px #ff003c;
+  font-weight: bold;
+}
+
+/* Botones de navegación */
+.boton {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 2px solid #ff003c;
+  color: #ff99aa;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.boton:hover {
+  background: #ff003c;
+  color: #fff;
+  box-shadow: 0 0 20px #ff003c;
+}
+
+/* Footer */
+footer {
+  padding: 20px;
+  background: #111;
+  font-size: 1em;
+  color: #ff99aa;
+  border-top: 1px solid rgba(255, 0, 60, 0.3);
+}
