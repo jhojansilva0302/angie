@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para chispitas</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+<script>
+let h = 0;
+let crecimiento = 0; 
+let numPetalos = 8;
+let corazones = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB, 1);
+  noStroke();
+  textAlign(CENTER, CENTER);
+
+  // generar corazones iniciales
+  for (let i = 0; i < 15; i++) {
+    corazones.push({
+      x: random(width/2 - 150, width/2 + 150),
+      y: random(height/2 - 300, height/2 - 100),
+      size: random(20, 40),
+      speed: random(0.5, 1.5),
+      hue: random(1)
+    });
+  }
+}
+
+function draw() {
+  background(0);
+
+  // dibujar corazones flotando arriba de la flor
+  for (let c of corazones) {
+    fill(c.hue, 1, 1);
+    dibujarCorazon(c.x, c.y, c.size);
+
+    c.y -= c.speed; // suben poco a poco
+    if (c.y < -50) { 
+      c.y = height/2 - 100;
+      c.x = random(width/2 - 150, width/2 + 150);
+      c.size = random(20, 40);
+      c.hue = random(1);
+    }
+  }
+
+  translate(width/2, height/2);
+
+  let radioPetalo = map(cos(frameCount * 0.01), -1, 1, 160, 200); 
+  let crecimientoMax = 1;
+  if (crecimiento < crecimientoMax) {
+    crecimiento += 0.01;
+  }
+
+  // pétalos
+  for (let i = 0; i < numPetalos; i++) {
+    let angulo = TWO_PI / numPetalos * i;
+    push();
+    rotate(angulo);
+
+    let c = color((h + i/numPetalos) % 1, 1, 1, 0.9);
+    fill(c);
+
+    beginShape();
+    vertex(0, 0);
+    bezierVertex(60 * crecimiento, -60 * crecimiento, 
+                 120 * crecimiento, -60 * crecimiento, 
+                 0, -radioPetalo * crecimiento);
+    bezierVertex(-120 * crecimiento, -60 * crecimiento, 
+                 -60 * crecimiento, -60 * crecimiento, 
+                 0, 0);
+    endShape(CLOSE);
+
+    pop();
+  }
+
+  // centro
+  fill(1, 0.8, 1, crecimiento);
+  ellipse(0, 0, 120 * crecimiento, 120 * crecimiento);
+
+  h += 0.002;
+  if (h > 1) h = 0;
+
+  // texto romántico abajo
+  resetMatrix(); 
+  let colorTexto = color((h + 0.5) % 1, 1, 1); 
+  fill(colorTexto);
+  textSize(70);
+  textStyle(BOLD);
+  text("TE AMO MUCHO", width/2, height - 160);
+  text("MI AMORCITO", width/2, height - 80);
+}
+
+// función para dibujar corazones
+function dibujarCorazon(x, y, tam) {
+  beginShape();
+  vertex(x, y);
+  bezierVertex(x - tam/2, y - tam/2, x - tam, y + tam/3, x, y + tam);
+  bezierVertex(x + tam, y + tam/3, x + tam/2, y - tam/2, x, y);
+  endShape(CLOSE);
+}
+</script>
+</body>
+</html>
